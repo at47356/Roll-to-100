@@ -12,7 +12,7 @@ const rollDiceBtn = document.querySelector('.btn--roll');
 const holdBtn = document.querySelector('.btn--hold');
 let roll;
 let currentPlayer = 0;
-let counter = 0
+let counter = 0;
 let totalPlayer0 = 0;
 let totalPlayer1 = 0;
 
@@ -21,34 +21,42 @@ const player = [player0, player1];
 
 const playerSwitch = () => {
     counter = 0;
-        playerScores[currentPlayer].textContent = counter;
-        player[currentPlayer].classList.remove('player--active')
-        currentPlayer = 1 - currentPlayer;
-        player[currentPlayer].classList.toggle('player--active')
+    playerScores[currentPlayer].textContent = counter;
+    player[currentPlayer].classList.remove('player--active')
+    currentPlayer = 1 - currentPlayer;
+    player[currentPlayer].classList.toggle('player--active')
 }
 
+const newGameFunc = () => {
+    totalPlayer0 = 0;
+    totalPlayer1 = 0;
+    totalScore0.textContent = '0';
+    currentScore0.textContent = '0';
+    totalScore1.textContent = '0';
+    currentScore1.textContent = '0';
+
+    if (player[1].classList.contains('player--active')) {
+        player[1].classList.remove('player--active');
+        player[0].classList.add('player--active')
+    }
+}
 
 const rollDiceFunc = () => {
-    
-
     roll = Math.trunc(Math.random() * 6) + 1;
     counter += roll; 
 
     dicePic.classList.remove('hidden');
     dicePic.src = `dice-${roll}.png`;
 
-    
-
     if (roll == 1) {
         playerSwitch()
     } else {
         playerScores[currentPlayer].textContent = counter;
     }
-
 }
 
 const holdFunc = () => {
-    if(currentPlayer == 0){
+    if (currentPlayer == 0) {
         totalPlayer0 += counter;
         totalScore0.textContent = totalPlayer0
         playerSwitch()
@@ -59,7 +67,6 @@ const holdFunc = () => {
     }
 }
 
-
-
-rollDiceBtn.addEventListener('click', rollDiceFunc)
-holdBtn.addEventListener('click', holdFunc)
+rollDiceBtn.addEventListener('click', rollDiceFunc);
+holdBtn.addEventListener('click', holdFunc);
+newGameBtn.addEventListener('click', newGameFunc);
