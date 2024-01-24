@@ -122,7 +122,7 @@ main {
   background-color: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(10px);
 
-  padding: 0.7rem 2.5rem;
+  padding: 0.7rem 1rem;
   border-radius: 50rem;
   box-shadow: 0 1.75rem 3.5rem rgba(0, 0, 0, 0.1);
 }
@@ -130,7 +130,7 @@ main {
 .btn::first-letter {
   font-size: 2.4rem;
   display: inline-block;
-  margin-right: 0.7rem;
+  /* margin-right: 0.7rem; */
 }
 
 .btn--new {
@@ -151,6 +151,23 @@ main {
 .btn:focus {
   outline: none;
 }
+
+.appear {
+  max-width: 0;
+  -webkit-transition: max-width 0.5s;
+  transition: max-width 0.5s;
+  display: inline-block;
+  vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
+  padding-bottom: 0.5rem;
+}
+
+.btn:hover .appear {
+  max-width: 10rem;
+}
+
+
 
 .dice {
   position: absolute;
