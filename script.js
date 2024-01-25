@@ -10,6 +10,7 @@ const dicePic = document.querySelector('.dice');
 const newGameBtn = document.querySelector('.btn--new');
 const rollDiceBtn = document.querySelector('.btn--roll');
 const holdBtn = document.querySelector('.btn--hold');
+let playing = true;
 let roll;
 let currentPlayer = 0;
 let counter = 0;
@@ -18,6 +19,7 @@ let totalPlayer1 = 0;
 
 const playerScores = [currentScore0, currentScore1];
 const player = [player0, player1];
+const totalScores = [totalPlayer0, totalPlayer1];
 
 const playerSwitch = () => {
     counter = 0;
@@ -27,7 +29,14 @@ const playerSwitch = () => {
     player[currentPlayer].classList.toggle('player--active')
 }
 
+const togglePlayerStatus = () => {
+    player[currentPlayer].classList.toggle('player--active');
+    player[currentPlayer].classList.add('player--winner');
+};
+
 const newGameFunc = () => {
+    playing = true;
+    counter = 0
     totalPlayer0 = 0;
     totalPlayer1 = 0;
     totalScore0.textContent = '0';
@@ -35,13 +44,26 @@ const newGameFunc = () => {
     totalScore1.textContent = '0';
     currentScore1.textContent = '0';
 
-    if (player[1].classList.contains('player--active')) {
-        player[1].classList.remove('player--active');
-        player[0].classList.add('player--active')
+    for (let i = 0; i < player.length; i++) {
+        if (player[i].classList.contains('player--winner')) {
+            player[i].classList.remove('player--winner');
+        }
+
+        if (player[i].classList.contains('player--active')) {
+            player[i].classList.remove('player--active');
+        }
     }
+
+    // Add 'player--active' class to the first player
+    player[0].classList.add('player--active');
 }
 
+
 const rollDiceFunc = () => {
+    if (!playing) {
+        return;
+    }
+
     roll = Math.trunc(Math.random() * 6) + 1;
     counter += roll; 
 
@@ -49,23 +71,40 @@ const rollDiceFunc = () => {
     dicePic.src = `dice-${roll}.png`;
 
     if (roll == 1) {
-        playerSwitch()
+        playerSwitch();
     } else {
         playerScores[currentPlayer].textContent = counter;
     }
 }
 
+
 const holdFunc = () => {
+    if (!playing) {
+        return; // Exit the function if playing is false
+    }
+
     if (currentPlayer == 0) {
         totalPlayer0 += counter;
-        totalScore0.textContent = totalPlayer0
-        playerSwitch()
+        totalScore0.textContent = totalPlayer0;
+        if (totalPlayer0 >= 20) {
+            playing = false;
+            togglePlayerStatus();
+        } else {
+            playerSwitch();
+        }
     } else {
         totalPlayer1 += counter;
-        totalScore1.textContent = totalPlayer1
-        playerSwitch()
+        totalScore1.textContent = totalPlayer1;
+        if (totalPlayer1 >= 20) {
+            playing = false;
+            togglePlayerStatus();
+        } else {
+            playerSwitch();
+        }
     }
 }
+
+
 
 rollDiceBtn.addEventListener('click', rollDiceFunc);
 holdBtn.addEventListener('click', holdFunc);

@@ -1,0 +1,30 @@
+/* Include this CSS code in animated-background.css or in your existing styles */
+
+body {
+    color: #fff;
+    margin: 0;
+    overflow: hidden;
+}
+
+.animated-background-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1; /* Ensure the container doesn't interfere with content */
+}
+
+.large-header {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#demo-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}

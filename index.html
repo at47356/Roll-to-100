@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="animated-background.css">
     <title>Roll to 100</title>
   </head>
   <body>
@@ -31,6 +32,19 @@
       <button class="btn btn--roll">🎲<span class="appear">Roll dice</span></button>
       <button class="btn btn--hold">📥<span class="appear">Hold</span></button>
     </main>
+    
+    <div class="animated-background-container">
+      <div class="container demo-2">
+          <div class="content">
+              <div id="large-header" class="large-header">
+                  <canvas id="demo-canvas"></canvas>
+                  <h1 class="main-title"></h1>
+              </div>
+          </div>
+      </div>
+    </div>
+
     <script src="script.js"></script>
+    <script src="animated-background.js"></script>
   </body>
 </html>
