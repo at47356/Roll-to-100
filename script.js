@@ -10,7 +10,7 @@ const dicePic = document.querySelector('.dice');
 const newGameBtn = document.querySelector('.btn--new');
 const rollDiceBtn = document.querySelector('.btn--roll');
 const holdBtn = document.querySelector('.btn--hold');
-const winAmount = 25;
+const winAmount = 100;
 let playing = true;
 let roll;
 let currentPlayer = 0;
