@@ -10,7 +10,7 @@
     function initHeader() {
         width = window.innerWidth;
         height = window.innerHeight;
-        target = {x: 0, y: height};
+        target = { x: 0, y: height };
 
         largeHeader = document.querySelector('.large-header');
         largeHeader.style.height = height + 'px';
@@ -22,7 +22,7 @@
 
         // create particles
         circles = [];
-        for(var x = 0; x < width * 0.2; x++) {
+        for (var x = 0; x < width * 0.3; x++) { //Adjust how much circles
             var c = new Circle();
             circles.push(c);
         }
@@ -51,6 +51,13 @@
     function animate() {
         if (animateHeader) {
             ctx.clearRect(0, 0, width, height);
+
+            // Add new circles to the array if the number is less than a certain limit
+            if (circles.length < 100) {
+                var c = new Circle();
+                circles.push(c);
+            }
+
             for (var i in circles) {
                 circles[i].draw();
             }
@@ -71,26 +78,25 @@
         function init() {
             _this.pos.x = Math.random() * width;
             _this.pos.y = height + Math.random() * 100;
-            _this.alpha = 0.1 + Math.random() * 0.3;
-            _this.scale = 0.1 + Math.random() * 0.3;
+            _this.alpha = 0.1 + Math.random() * 0.5;
+            _this.scale = 0.1 + Math.random() * 0.6;
             _this.velocity = 1 + Math.random() * 2; // Adjusted velocity for slower movement
         }
 
         this.draw = function() {
-            if (_this.alpha <= 0) {
+            if (_this.alpha <= 0 || _this.pos.y < 0) {
                 init();
             }
             _this.pos.y -= _this.velocity;
-            _this.alpha -= 0.0005;
+            _this.alpha -= 0.00005;
             ctx.beginPath();
             ctx.arc(_this.pos.x, _this.pos.y, _this.scale * 10, 0, 2 * Math.PI, false);
 
             // Use orange for the fill style
-            ctx.fillStyle = 'rgba(255, 165, 0,' + _this.alpha + ')';
-            
+            ctx.fillStyle = 'rgba(237, 223, 204,' + _this.alpha + ')';
+
             ctx.fill();
         };
     }
 
 })();
-

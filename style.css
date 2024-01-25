@@ -1,4 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+:root {
+  --darkBlue: #023047;
+  --orange: #fb8500;
+  --grey: #303030;
+  --lightBlue: #8ecae6;
+}
 
 * {
   margin: 0;
@@ -16,7 +22,7 @@ body {
   font-weight: 400;
   height: 100vh;
   color: #333;
-  background-image: linear-gradient( #8f5619 , #303030 , #023047 ); /* was to top left*/
+  background-image: linear-gradient( #9c5b10, #8a8a8a, #023047 ); /* was to top left*/
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,7 +38,7 @@ main {
   position: relative;
   width: 100rem;
   height: 60rem;
-  background-color: rgba(255, 255, 255, 0.35);
+  background-color: rgba(255, 255, 255, 0.298);
   backdrop-filter: blur(200px);
   filter: blur();
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.25);
@@ -64,7 +70,7 @@ main {
 .score {
   font-size: 8rem;
   font-weight: 300;
-  color: #023047;
+  color: #6d6875;
   margin-bottom: auto;
 }
 
@@ -83,7 +89,7 @@ main {
 }
 
 .current {
-  background-color: #fb8500;
+  background-color: #023047;
   opacity: 0.8;
   border-radius: 9px;
   color: #fff;
@@ -120,7 +126,7 @@ main {
   transition: all 0.2s;
 
   background-color: white;
-  background-color: #023047;
+  background-color: #303030;
   backdrop-filter: blur(10px);
 
   padding: 0.7rem 1rem;
@@ -180,7 +186,7 @@ main {
 }
 
 .player--winner {
-  background-color: #8ecae6;
+  background-color: #ffffff;
 }
 
 .player--winner .name {

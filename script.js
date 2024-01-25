@@ -10,6 +10,7 @@ const dicePic = document.querySelector('.dice');
 const newGameBtn = document.querySelector('.btn--new');
 const rollDiceBtn = document.querySelector('.btn--roll');
 const holdBtn = document.querySelector('.btn--hold');
+const winAmount = 25;
 let playing = true;
 let roll;
 let currentPlayer = 0;
@@ -86,7 +87,7 @@ const holdFunc = () => {
     if (currentPlayer == 0) {
         totalPlayer0 += counter;
         totalScore0.textContent = totalPlayer0;
-        if (totalPlayer0 >= 20) {
+        if (totalPlayer0 >= 25) {
             playing = false;
             togglePlayerStatus();
         } else {
@@ -95,7 +96,7 @@ const holdFunc = () => {
     } else {
         totalPlayer1 += counter;
         totalScore1.textContent = totalPlayer1;
-        if (totalPlayer1 >= 20) {
+        if (totalPlayer1 >= 25) {
             playing = false;
             togglePlayerStatus();
         } else {
