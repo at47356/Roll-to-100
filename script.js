@@ -90,6 +90,7 @@ const holdFunc = () => {
         if (totalPlayer0 >= 25) {
             playing = false;
             togglePlayerStatus();
+            dicePic.classList.add('hidden');
         } else {
             playerSwitch();
         }
