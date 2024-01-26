@@ -87,7 +87,7 @@ const holdFunc = () => {
     if (currentPlayer == 0) {
         totalPlayer0 += counter;
         totalScore0.textContent = totalPlayer0;
-        if (totalPlayer0 >= 25) {
+        if (totalPlayer0 >= winAmount) {
             playing = false;
             togglePlayerStatus();
             dicePic.classList.add('hidden');
@@ -97,9 +97,10 @@ const holdFunc = () => {
     } else {
         totalPlayer1 += counter;
         totalScore1.textContent = totalPlayer1;
-        if (totalPlayer1 >= 25) {
+        if (totalPlayer1 >= winAmount) {
             playing = false;
             togglePlayerStatus();
+            dicePic.classList.add('hidden');
         } else {
             playerSwitch();
         }

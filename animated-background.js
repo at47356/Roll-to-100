@@ -1,7 +1,8 @@
 // Include this JavaScript code in animated-background.js
 
-(function() {
+(function () {
     var width, height, largeHeader, canvas, ctx, circles, target, animateHeader = true;
+    var winAmount = 100; // Assuming this is your magic number
 
     // Main
     initHeader();
@@ -22,10 +23,6 @@
 
         // create particles
         circles = [];
-        for (var x = 0; x < width * 0.3; x++) { //Adjust how much circles
-            var c = new Circle();
-            circles.push(c);
-        }
         animate();
     }
 
@@ -52,8 +49,22 @@
         if (animateHeader) {
             ctx.clearRect(0, 0, width, height);
 
-            // Add new circles to the array if the number is less than a certain limit
-            if (circles.length < 100) {
+            // Calculate the proximity of the total scores to the magic number
+            var proximityFactor0 = Math.abs(totalPlayer0 - winAmount) / winAmount;
+            var proximityFactor1 = Math.abs(totalPlayer1 - winAmount) / winAmount;
+
+            // Calculate the number of circles based on the proximity
+            var maxCircles = 6; // Adjust this value to control the maximum number of circles
+            var numCircles0 = Math.floor(maxCircles * (1 - proximityFactor0));
+            var numCircles1 = Math.floor(maxCircles * (1 - proximityFactor1));
+
+            // Add new circles to the array based on the proximity
+            for (var x = 0; x < numCircles0; x++) {
+                var c = new Circle();
+                circles.push(c);
+            }
+
+            for (var y = 0; y < numCircles1; y++) {
                 var c = new Circle();
                 circles.push(c);
             }
@@ -70,7 +81,7 @@
         var _this = this;
 
         // constructor
-        (function() {
+        (function () {
             _this.pos = {};
             init();
         })();
@@ -83,7 +94,7 @@
             _this.velocity = 1 + Math.random() * 2; // Adjusted velocity for slower movement
         }
 
-        this.draw = function() {
+        _this.draw = function () {
             if (_this.alpha <= 0 || _this.pos.y < 0) {
                 init();
             }
@@ -100,3 +111,5 @@
     }
 
 })();
+
+
